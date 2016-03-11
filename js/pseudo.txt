@@ -1,0 +1,62 @@
+#SamScript
+
+Library: Phaser.js
+==================
+
+Game: 480x320, auto-size, centered;
+
+Variables: "ball, paddle, bricks, newBrick, brickInfo, scoreText, livesText, lifeLostText, startButton";
+
+Variables$: "paddleSpeed$5, score$0, lives$1"
+
+Variables≠: "playing≠false"
+
+
+Preloaded assets
+================
+
+backgroundColor (#eee)
+ball (img/ball.png)
+paddle (img/paddle.png)
+brick (img/brick.png)
+spritesheet.ball (img/wobble.png)
+spritesheet.button (img/button.png)
+
+
+When page is loaded
+{
+    Add physics engine: ARCADE;
+    
+    Insert ball at (x:230,y:130);
+    Add animation spritesheet.ball (0,1,0,2,0,1,0,2,0);
+    Enable ARCADE physics for ball;
+    Enable world collision for ball;
+    Make ball bounce off of other assets;
+    
+    Disable world collision for bottom of screen;
+    Make ball check what world boundary it hits;
+    If ball hits bottom of screen
+    {
+        Trigger ballLeaveScreen;
+    }
+    
+    Insert paddle at (x:middle,y:bottom-5);
+    Set middle of paddle to exact middle of sprite;
+    Enable ARCADE physics for paddle;
+    Make paddle immovable from other assets;
+    
+    Add scoreText at (x:5,y:5), saying "Points: 0";
+    
+    Add livesText at (x:width-5,y:5), saying "Lives: " + lives;
+    
+    Add lifeLostText at (x:middle,y:middle), saying "Life lost, press right to continue";
+    Set middle of lifeLostText to exact middle of text;
+    Make lifeLostText invisible;
+    
+    Insert startButton at (x:middle,y:middle) using spritesheet.button;
+    Set middle of startButton to exact middle of sprite;
+    If startButton is clicked
+    {
+        Trigger startGame;
+    }
+}
